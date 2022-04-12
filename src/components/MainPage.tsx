@@ -1,5 +1,5 @@
 import "../styles/mainPage.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Menu from "./Menu";
 import { useEffect } from "react";
@@ -9,6 +9,14 @@ import { addItem } from "../redux/features/cartSlice";
 const MainPage: React.FC = () => {
   const shoppingCart = useSelector((state: RootState) => state.cart.value);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    MenuList.forEach((listItem) => {
+      dispatch(addItem(listItem));
+    });
+  }, []);
+
   return (
     <div className="mainPageDiv">
       <div className="mainPageHeading">
@@ -16,7 +24,13 @@ const MainPage: React.FC = () => {
       </div>
       <div className="mainPageMenu">
         {shoppingCart.map((cartItem) => {
-          return <Menu name={cartItem.item} price={cartItem.price} />;
+          return (
+            <Menu
+              key={cartItem.item}
+              name={cartItem.item}
+              price={cartItem.price}
+            />
+          );
         })}
       </div>
     </div>
