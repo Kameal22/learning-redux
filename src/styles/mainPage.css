@@ -1,0 +1,14 @@
+.mainPageDiv{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainPageHeading{
+    color: #f1faee;
+}
+
+.mainPageMenu{
+    color: #f1faee;
+}
