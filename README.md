@@ -1,1 +1,1 @@
-# Redux-learning application
+# Redux toolkit application for learning purposes.
