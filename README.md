@@ -1,1 +1,1 @@
-# Redux + redus-persist
+# Redux-learning application
