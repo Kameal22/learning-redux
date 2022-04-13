@@ -1,0 +1,17 @@
+.cartItem{
+    border-bottom: 1px solid ivory;
+    padding-bottom: .5vh;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartItem i{
+    cursor: pointer;
+}
+
+.cartIcons{
+    width: 5%;
+    display: flex;
+    justify-content: space-around;
+}

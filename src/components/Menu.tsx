@@ -1,15 +1,25 @@
 import "../styles/menu.css";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/features/cartSlice";
 
 interface MenuProps {
-  key: string;
   name: string;
   price: number;
+  id: string;
 }
 
 const Menu: React.FC<MenuProps> = (props) => {
+  const dispatch = useDispatch();
+
+  const addItemToCart = (name: string, price: number, id: string) => {
+    dispatch(addItem({ name, price, id }));
+  };
+
   return (
     <div className="menu">
-      <p>{props.name}</p>
+      <p onClick={() => addItemToCart(props.name, props.price, props.id)}>
+        {props.name}
+      </p>
       <p>{props.price}</p>
     </div>
   );

@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 
-interface CartInterface {
-  value: { item: string; price: number }[];
+interface cartInterface {
+  value: { name: string; price: number; id: string }[];
 }
 
-const initialState: CartInterface = {
+const initialState: cartInterface = {
   value: [],
 };
 
@@ -14,13 +15,27 @@ export const cartSlice = createSlice({
   reducers: {
     addItem: (
       state,
-      action: PayloadAction<{ item: string; price: number }>
+      action: PayloadAction<{ name: string; price: number; id: string }>
     ) => {
+      action.payload.id = uuid();
       state.value.push(action.payload);
+    },
+    removeItem: (state, action: PayloadAction<{ id: string }>) => {
+      const stateAfterRemove = state.value.filter(
+        (value) => value.id !== action.payload.id
+      );
+      state.value = stateAfterRemove;
+    },
+    editItem: (state, action: PayloadAction<{ name: string; id: string }>) => {
+      const itemToEdit = state.value.findIndex(
+        (index) => index.id === action.payload.id
+      );
+
+      state.value[itemToEdit].name = "EDITED";
     },
   },
 });
 
-export const { addItem } = cartSlice.actions;
+export const { addItem, removeItem, editItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -6,15 +6,37 @@
     align-items: center;
 }
 
-.mainPageHeading{
+.mainPageHeadingAndDescription{
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     color: #f1faee;
 }
 
 .mainPageMenu{
     color: #f1faee;
-    width: 15%;
+    width: 75%;
     height: 50%;
     display: flex;
+    justify-content: space-between;
+}
+
+.mainPageMenuOptions{
+    display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    height: 100%;
+    width: 20%;
+    border-right: 2px solid #f1faee;
+    cursor: pointer;
+}
+
+.mainPageMenuChoices{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+    margin-left: 5%;
+    width: 80%;
+    height: 100%;
 }
