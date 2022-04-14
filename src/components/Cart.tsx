@@ -2,6 +2,7 @@ import "../styles/cart.css";
 import { useDispatch } from "react-redux";
 import { removeItem, editItem } from "../redux/features/cartSlice";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useState } from "react";
 
 interface CartProps {
   name: string;
@@ -10,6 +11,8 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = (props) => {
+  const [edittingCartItem, setEdditingCartItem] = useState(false);
+
   const dispatch = useDispatch();
 
   const removeItemFromCart = (id: string) => {
@@ -22,7 +25,13 @@ const Cart: React.FC<CartProps> = (props) => {
 
   return (
     <div className="cartItem">
-      <p>{props.name}</p>
+      {edittingCartItem ? (
+        <form>
+          <input type="text" name="cartItem"></input>
+        </form>
+      ) : (
+        <p>{props.name}</p>
+      )}
       <p>{props.price} $</p>
       <div className="cartIcons">
         <i
@@ -30,7 +39,7 @@ const Cart: React.FC<CartProps> = (props) => {
           className="bi bi-x-square"
         ></i>
         <i
-          onClick={() => editCartItem(props.name, props.id)}
+          onClick={() => setEdditingCartItem(true)}
           className="bi bi-pencil-square"
         ></i>
       </div>
