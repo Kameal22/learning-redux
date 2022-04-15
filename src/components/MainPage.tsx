@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { MenuList } from "../utils/MenuList";
 import { fetchItems } from "../redux/features/optionsSlice";
 import Cart from "./Cart";
+import Nav from "./Nav";
 
 const MainPage: React.FC = () => {
   const shoppingOptions = useSelector(
@@ -13,6 +14,8 @@ const MainPage: React.FC = () => {
   );
 
   const shoppingCart = useSelector((state: RootState) => state.cart.value);
+
+  const darkMode = useSelector((state: RootState) => state.darkMode.value);
 
   const dispatch = useDispatch();
 
@@ -24,12 +27,26 @@ const MainPage: React.FC = () => {
 
   return (
     <div className="mainPageDiv">
-      <div className="mainPageHeadingAndDescription">
+      <div className="mainPageNav">
+        <Nav />
+      </div>
+      <div
+        style={darkMode ? { color: "#f1faee" } : { color: "#001219" }}
+        className="mainPageHeadingAndDescription"
+      >
         <h1>Redux Menu</h1>
         <h3>Simple redux application for learning purposes.</h3>
       </div>
-      <div className="mainPageMenu">
-        <div className="mainPageMenuOptions">
+      <div
+        style={darkMode ? { color: "#f1faee" } : { color: "#001219" }}
+        className="mainPageMenu"
+      >
+        <div
+          style={
+            darkMode ? { borderColor: "#f1faee" } : { borderColor: "#001219" }
+          }
+          className="mainPageMenuOptions"
+        >
           {shoppingOptions.map((option) => {
             return (
               <Menu

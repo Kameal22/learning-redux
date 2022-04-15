@@ -1,0 +1,2 @@
+Add navbar with registering
+Add Light/Dark mode switch

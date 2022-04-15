@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
         (index) => index.id === action.payload.id
       );
 
-      state.value[itemToEdit].name = "EDITED";
+      state.value[itemToEdit].name = action.payload.name;
     },
   },
 });

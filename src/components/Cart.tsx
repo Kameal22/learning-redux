@@ -1,8 +1,9 @@
 import "../styles/cart.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeItem, editItem } from "../redux/features/cartSlice";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useState } from "react";
+import { RootState } from "../redux/store";
 
 interface CartProps {
   name: string;
@@ -11,9 +12,20 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = (props) => {
-  const [edittingCartItem, setEdditingCartItem] = useState(false);
+  const [edittingCartItem, setEdditingCartItem] = useState<boolean>(false);
+  const [editedItem, setEditedItem] = useState<string>("");
 
   const dispatch = useDispatch();
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    setEditedItem(e.currentTarget.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    editCartItem(editedItem, props.id);
+    setEdditingCartItem(false);
+  };
 
   const removeItemFromCart = (id: string) => {
     dispatch(removeItem({ id }));
@@ -23,11 +35,21 @@ const Cart: React.FC<CartProps> = (props) => {
     dispatch(editItem({ name, id }));
   };
 
+  const darkMode = useSelector((state: RootState) => state.darkMode.value);
+
   return (
-    <div className="cartItem">
+    <div
+      style={darkMode ? { borderColor: "#f1faee" } : { borderColor: "#001219" }}
+      className="cartItem"
+    >
       {edittingCartItem ? (
-        <form>
-          <input type="text" name="cartItem"></input>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="cartInput"
+            value={editedItem}
+            onChange={handleChange}
+          ></input>
         </form>
       ) : (
         <p>{props.name}</p>
@@ -35,12 +57,12 @@ const Cart: React.FC<CartProps> = (props) => {
       <p>{props.price} $</p>
       <div className="cartIcons">
         <i
-          onClick={() => removeItemFromCart(props.id)}
-          className="bi bi-x-square"
-        ></i>
-        <i
           onClick={() => setEdditingCartItem(true)}
           className="bi bi-pencil-square"
+        ></i>
+        <i
+          onClick={() => removeItemFromCart(props.id)}
+          className="bi bi-x-square"
         ></i>
       </div>
     </div>
