@@ -1,0 +1,54 @@
+input:focus{
+    outline: none;
+    border-color: ivory;
+}
+
+.registerDiv{
+    position: absolute;
+    top: 50px;
+    background: rgba(127, 149, 206, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 15px 25px;
+}
+
+.registerDiv input{
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: ivory;
+}
+
+.registerDiv label{
+    cursor: pointer;
+}
+
+.registerInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.registerDiv button{
+    background-color: transparent;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px 3px;
+    color: ivory;
+    border-color: azure;
+    border-radius: 10px;
+    width: 50%;
+    cursor: pointer;
+}
+
+.error{
+    color: rgba(228, 13, 13, 0.973);
+    margin-top: 1vh;
+    text-align: center;
+}

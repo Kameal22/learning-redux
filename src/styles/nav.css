@@ -12,9 +12,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 10%
+    width: 10%;
+    position: relative;
 }
 
 .register{
+    cursor: pointer;
+}
+
+.logout{
     cursor: pointer;
 }
