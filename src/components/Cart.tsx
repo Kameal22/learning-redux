@@ -17,6 +17,8 @@ const Cart: React.FC<CartProps> = (props) => {
 
   const dispatch = useDispatch();
 
+  const darkMode = useSelector((state: RootState) => state.darkMode.value);
+
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setEditedItem(e.currentTarget.value);
   };
@@ -34,8 +36,6 @@ const Cart: React.FC<CartProps> = (props) => {
   const editCartItem = (name: string, id: string) => {
     dispatch(editItem({ name, id }));
   };
-
-  const darkMode = useSelector((state: RootState) => state.darkMode.value);
 
   return (
     <div

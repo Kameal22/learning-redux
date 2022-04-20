@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/features/registerSlice";
-import { handleError } from "../utils/FormErrorHandler";
 import "../styles/register.css";
 
 interface RegisterProps {
@@ -25,8 +24,12 @@ const Register: React.FC<RegisterProps> = (props) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(registerUser({ name, password }));
-    props.setRegistering();
+    if (name === "" || password === "") {
+      setError("Please provide name and password");
+    } else {
+      dispatch(registerUser({ name, password }));
+      props.setRegistering();
+    }
   };
 
   return (
